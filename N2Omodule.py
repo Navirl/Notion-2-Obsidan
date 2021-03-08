@@ -10,6 +10,7 @@ from os import path
 from re import compile, search
 from csv import DictReader
 from pathlib import Path
+import urllib.parse
 
 
 def ObsIndex(contents):
@@ -243,7 +244,8 @@ def N2Omd(mdFile):
             # correct spaces
             attachment = regex20.sub(" ",attachment)
             attachment = regexSlash.sub("/",attachment).strip()
-            
+            attachment = urllib.parse.unquote(attachment)
+
             # Reconstruct Links as embedded links
             embededLink = "![["+attachment+"]] "
 
